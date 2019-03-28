@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"strings"
 
@@ -58,6 +59,17 @@ func errCheck(msg string, err error) {
 	}
 }
 
+func findUserVoiceState(session *discordgo.Session, userid string) (*discordgo.VoiceState, error) {
+	for _, guild := range session.State.Guilds {
+		for _, vs := range guild.VoiceStates {
+			if vs.UserID == userid {
+				return vs, nil
+			}
+		}
+	}
+	return nil, errors.New("Could not find user's voice state")
+}
+
 /*
 Handle various commands passed into the bot.
 discord: the discord session.
@@ -96,7 +108,7 @@ func commandHandler(discord *discordgo.Session, message *discordgo.MessageCreate
 		// Listen to music! (TODO)
 		if len(args) == 1 {
 			discord.ChannelMessageSend(message.ChannelID, "Proper usage... watch this space.")
-			vc, err := discord.ChannelVoiceJoin("560859297278328844", "560880394262806528", false, false)
+			vc, err := discord.ChannelVoiceJoin(message.GuildID, "560880394262806528", false, false)
 			errCheck("Couldn't join voice server", err)
 			vc.AddHandler(func(vc *discordgo.VoiceConnection, vs *discordgo.VoiceSpeakingUpdate) {
 
@@ -106,6 +118,13 @@ func commandHandler(discord *discordgo.Session, message *discordgo.MessageCreate
 			vc.Close()
 		} else {
 			discord.ChannelMessageSend(message.ChannelID, "Usage: !listen <url>")
+		}
+
+	case "!join":
+		if len(args) == 1 {
+			vs, err := findUserVoiceState(discord, message.Author.ID)
+			errCheck("Could not find user in voice channel.", err)
+			discord.ChannelVoiceJoin(vs.GuildID, vs.ChannelID, false, true)
 		}
 
 	}
