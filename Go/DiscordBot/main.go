@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"strings"
 
 	"github.com/bwmarrin/discordgo"
 )
@@ -54,7 +55,12 @@ func commandHandler(discord *discordgo.Session, message *discordgo.MessageCreate
 
 	content := message.Content
 
-	switch content {
+	command := strings.Split(content, " ")
+
+	comm := command[0]
+	args := command[1:]
+
+	switch comm {
 	case "!ping":
 		discord.ChannelMessageSend(message.ChannelID, "Pong!")
 	case "!clear":
@@ -63,8 +69,23 @@ func commandHandler(discord *discordgo.Session, message *discordgo.MessageCreate
 		msgs, err := discord.ChannelMessages(ch.ID, 100, "", "", "")
 		errCheck("Oh no! Could not retrieve messages in channel.", err)
 		for _, v := range msgs {
+			fmt.Printf("Deleting message %s\n", v.Content)
 			discord.ChannelMessageDelete(ch.ID, v.ID)
 		}
+	case "!listen":
+		if len(args) == 1 {
+			discord.ChannelMessageSend(message.ChannelID, "Proper usage... watch this space.")
+			vc, err := discord.ChannelVoiceJoin("560859297278328844", "560880394262806528", false, false)
+			errCheck("Couldn't join voice server", err)
+			vc.AddHandler(func(vc *discordgo.VoiceConnection, vs *discordgo.VoiceSpeakingUpdate) {
+			})
+
+			vc.Disconnect()
+			vc.Close()
+		} else {
+			discord.ChannelMessageSend(message.ChannelID, "Usage: !listen <url>")
+		}
+
 	}
 
 	fmt.Printf("Message: %+v || Content: %+v || From: %s\n", message.Message, content, message.Author)
