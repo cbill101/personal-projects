@@ -49,20 +49,6 @@ func main() {
 }
 
 /*
-errCheck ...
-Checks if an error occured. If so, print the passed in message and abort.
-
-msg: the string to print out to the console.
-err: the error to print out.
-*/
-func errCheck(msg string, err error) {
-	if err != nil {
-		fmt.Printf("%s: %+v", msg, err)
-		panic(err)
-	}
-}
-
-/*
 commandHandler ...
 Handle various commands passed into the bot.
 discord: the discord session.
@@ -86,18 +72,18 @@ func commandHandler(discord *discordgo.Session, message *discordgo.MessageCreate
 	switch comm {
 	//Simple test command ping. Bot responds with Pong.
 	case "!ping":
-		PingCommand(discord, message.ChannelID)
+		go PingCommand(discord, message.ChannelID)
 	case "!clear":
 		// Clears up to 100 messages less than 2 weeks old in the called channel.
-		ClearCommand(discord, message)
+		go ClearCommand(discord, message)
 	case "!listen":
-		ListenCommand(discord, message, args)
+		go ListenCommand(discord, message, args)
 	case "!join":
-		JoinCommand(discord, message)
+		go JoinCommand(discord, message)
 	case "!leave":
-		leaveVoiceChannel(voiceConn)
+		go LeaveCommand(discord, message)
 	case "!rank":
-		RankCommand(discord, message, args)
+		go RankCommand(discord, message, args)
 	}
 
 	// Debugging server side, prints stuff

@@ -39,12 +39,10 @@ func leaveVoiceChannel(vc *discordgo.VoiceConnection) (*discordgo.VoiceConnectio
 	err := vc.Disconnect()
 
 	if err != nil {
-		vc.Close()
 		return nil, err
 	}
 
 	vc.Close()
-	vc = nil
 
 	return vc, nil
 }

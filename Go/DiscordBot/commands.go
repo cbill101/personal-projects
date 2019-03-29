@@ -37,7 +37,7 @@ func ClearCommand(discord *discordgo.Session, message *discordgo.MessageCreate) 
 	errCheck("Oh no! Could not get channel ID.", err)
 
 	msgs, err := discord.ChannelMessages(ch.ID, 100, "", "", "")
-	errCheck("Oh no! Could not retrieve messages in channel.", err)
+	errCheck("Oh no! Could not get channel messages.", err)
 
 	for _, v := range msgs {
 		fmt.Printf("Deleting message %s from user %s\n", v.Content, v.Author)
@@ -84,7 +84,11 @@ message: the Message containing a lot of info (channel ID, author, content, etc)
 */
 func JoinCommand(discord *discordgo.Session, message *discordgo.MessageCreate) {
 	vs, err := findUserVoiceState(discord, message.Author.ID)
-	errCheck("Could not find user in voice channel.", err)
+	errCheckNonPanic(discord, message, "You need to be in a voice channel, first.", err)
+
+	if err != nil {
+		return
+	}
 
 	if voiceConn != nil {
 		voiceConn.Disconnect()
@@ -96,6 +100,32 @@ func JoinCommand(discord *discordgo.Session, message *discordgo.MessageCreate) {
 	voiceConn.AddHandler(func(vc *discordgo.VoiceConnection, vs *discordgo.VoiceSpeakingUpdate) {
 
 	})
+}
+
+/*
+LeaveCommand ...
+Handles the leave command from a Discord user.
+
+This allows the bot to leave the voice channel the bot is currently in.
+If the user is not in a voice channel... the bot will stay put.
+
+NOTE: voiceConn is a pointer to a voiceConnection object in main.go. It's maintained to keep
+track of where the bot is.
+
+discord: The Discord session struct
+message: the Message containing a lot of info (channel ID, author, content, etc)
+*/
+func LeaveCommand(discord *discordgo.Session, message *discordgo.MessageCreate) {
+	vs, err := findUserVoiceState(discord, botID)
+	errCheckNonPanic(discord, message, "I'm not in a voice channel!", err)
+
+	if err != nil {
+		return
+	}
+
+	vc := discord.VoiceConnections[vs.GuildID]
+
+	leaveVoiceChannel(vc)
 }
 
 /*
