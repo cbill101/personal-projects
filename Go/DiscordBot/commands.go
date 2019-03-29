@@ -113,13 +113,27 @@ TODO: if no args, list roles on the server and print them in calling channel
 */
 func RankCommand(discord *discordgo.Session, message *discordgo.MessageCreate, args []string) {
 	rolename := strings.Join(args, " ")
-	if strings.Compare("", rolename) == 0 {
-		// List ranks available.
-		return
-	}
 	gu, err := discord.Guild(message.GuildID)
 	errCheck("Couldn't get guild ID", err)
 	roles := gu.Roles
+
+	if strings.Compare("", rolename) == 0 {
+		var roleStr strings.Builder
+
+		roleStr.WriteString("```\nAvailable roles:\n")
+		for _, role := range roles {
+			if strings.Compare(role.Name, "@everyone") == 0 {
+				continue
+			}
+			roleStr.WriteString(role.Name)
+			roleStr.WriteString("\n")
+		}
+
+		roleStr.WriteString("```")
+
+		discord.ChannelMessageSend(message.ChannelID, roleStr.String())
+		return
+	}
 	exists := false
 
 	for _, role := range roles {

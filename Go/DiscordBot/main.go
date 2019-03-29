@@ -33,7 +33,7 @@ func main() {
 			fmt.Println("Error attempting to set my status")
 		}
 		servers := discord.State.Guilds
-		fmt.Printf("Testing bot has started on %d servers", len(servers))
+		fmt.Printf("Testing bot has started on %d servers\n", len(servers))
 	})
 
 	/*
