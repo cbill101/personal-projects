@@ -6,6 +6,15 @@ import (
 	"github.com/bwmarrin/discordgo"
 )
 
+/*
+findUserVoiceState ...
+Finds the voice state associated with the desired user, if it exists.
+
+session: the Discord Session
+userid: the Discord user ID
+
+returns a VoiceState, error tuple.
+*/
 func findUserVoiceState(session *discordgo.Session, userid string) (*discordgo.VoiceState, error) {
 	for _, guild := range session.State.Guilds {
 		for _, vs := range guild.VoiceStates {
@@ -17,6 +26,15 @@ func findUserVoiceState(session *discordgo.Session, userid string) (*discordgo.V
 	return nil, errors.New("Could not find user's voice state")
 }
 
+/*
+leaveVoiceChannel ...
+The bot leaves the voice channel it is currently in.
+Contract: This function assumes the vc struct is not null.
+
+vc: the voice connection associated with the bot
+
+returns a nil, error tuple.
+*/
 func leaveVoiceChannel(vc *discordgo.VoiceConnection) (*discordgo.VoiceConnection, error) {
 	err := vc.Disconnect()
 

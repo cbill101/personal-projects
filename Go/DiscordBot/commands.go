@@ -7,6 +7,14 @@ import (
 	"github.com/bwmarrin/discordgo"
 )
 
+/*
+PingCommand ...
+Handles the ping command from a Discord user... which simply returns Pong! back
+to the user.
+
+discord: the Discord session struct
+chID: the Discord channel ID to send the message through
+*/
 func PingCommand(discord *discordgo.Session, chID string) {
 	msg, err := discord.ChannelMessageSend(chID, "Pong!")
 	errCheck("Did not send ping message back successfully", err)
@@ -14,6 +22,15 @@ func PingCommand(discord *discordgo.Session, chID string) {
 	fmt.Println("Responded to ping by user " + msg.Author.String())
 }
 
+/*
+ClearCommand ...
+Handles the clear command from a Discord user.
+This clears up to 100 messages in the channel it is called in.
+!!REQUIRES MANAGE MESSAGES PERMISSION TO WORK!!
+
+discord: The Discord session struct
+message: the Message containing a lot of info (channel ID, author, content, etc)
+*/
 func ClearCommand(discord *discordgo.Session, message *discordgo.MessageCreate) {
 	// Clears up to 100 messages less than 2 weeks old in the called channel.
 	ch, err := discord.Channel(message.ChannelID)
@@ -29,6 +46,16 @@ func ClearCommand(discord *discordgo.Session, message *discordgo.MessageCreate) 
 	}
 }
 
+/*
+ListenCommand ...
+Handles the listen command from a Discord user.
+
+This allows users to listen to songs through YouTube. (TODO)
+
+discord: The Discord session struct
+message: the Message containing a lot of info (channel ID, author, content, etc)
+args: the arguments for the command
+*/
 func ListenCommand(discord *discordgo.Session, message *discordgo.MessageCreate, args []string) {
 	// Listen to music! (TODO)
 	if len(args) >= 1 {
@@ -42,9 +69,23 @@ func ListenCommand(discord *discordgo.Session, message *discordgo.MessageCreate,
 	}
 }
 
+/*
+JoinCommand ...
+Handles the join command from a Discord user.
+
+This allows the bot to join the voice channel the calling user is currently in.
+If the user is not in a voice channel... the bot will stay put.
+
+NOTE: voiceConn is a pointer to a voiceConnection object in main.go. It's maintained to keep
+track of where the bot is.
+
+discord: The Discord session struct
+message: the Message containing a lot of info (channel ID, author, content, etc)
+*/
 func JoinCommand(discord *discordgo.Session, message *discordgo.MessageCreate) {
 	vs, err := findUserVoiceState(discord, message.Author.ID)
 	errCheck("Could not find user in voice channel.", err)
+
 	if voiceConn != nil {
 		voiceConn.Disconnect()
 		voiceConn.Close()
@@ -57,6 +98,19 @@ func JoinCommand(discord *discordgo.Session, message *discordgo.MessageCreate) {
 	})
 }
 
+/*
+RankCommand ...
+Handles the rank command from a Discord user.
+
+This allows the user to assign a role to themselves. Cool, right?
+
+discord: The Discord session struct
+message: the Message containing a lot of info (channel ID, author, content, etc)
+args: The arguments for the command (in this case, the role the user wants)
+
+TODO: check if user already has role.
+TODO: if no args, list roles on the server and print them in calling channel
+*/
 func RankCommand(discord *discordgo.Session, message *discordgo.MessageCreate, args []string) {
 	rolename := strings.Join(args, " ")
 	if strings.Compare("", rolename) == 0 {

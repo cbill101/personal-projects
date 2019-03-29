@@ -49,7 +49,11 @@ func main() {
 }
 
 /*
+errCheck ...
 Checks if an error occured. If so, print the passed in message and abort.
+
+msg: the string to print out to the console.
+err: the error to print out.
 */
 func errCheck(msg string, err error) {
 	if err != nil {
@@ -59,6 +63,7 @@ func errCheck(msg string, err error) {
 }
 
 /*
+commandHandler ...
 Handle various commands passed into the bot.
 discord: the discord session.
 message: the command.
