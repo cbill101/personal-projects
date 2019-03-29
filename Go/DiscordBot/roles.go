@@ -4,15 +4,6 @@ import (
 	"github.com/bwmarrin/discordgo"
 )
 
-func Contains(a []string, x string) bool {
-	for _, n := range a {
-		if x == n {
-			return true
-		}
-	}
-	return false
-}
-
 /*
 AddRole ...
 Adds the passed in role to the desired user. Essentially an error wrapper for GuildMemberRoleAdd.

@@ -147,6 +147,7 @@ func RankCommand(discord *discordgo.Session, message *discordgo.MessageCreate, a
 	roles := gu.Roles
 
 	mem, err := discord.GuildMember(gu.ID, message.Author.ID)
+	errCheck("Could not retrieve member from Guild.", err)
 
 	memRoles := mem.Roles
 
