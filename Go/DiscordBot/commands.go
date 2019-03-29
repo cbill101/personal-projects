@@ -103,19 +103,22 @@ RankCommand ...
 Handles the rank command from a Discord user.
 
 This allows the user to assign a role to themselves. Cool, right?
+If no args, simply lists all the roles.
+If the user has the role already, this will remove the role from them.
 
 discord: The Discord session struct
 message: the Message containing a lot of info (channel ID, author, content, etc)
 args: The arguments for the command (in this case, the role the user wants)
-
-TODO: check if user already has role.
-TODO: if no args, list roles on the server and print them in calling channel
 */
 func RankCommand(discord *discordgo.Session, message *discordgo.MessageCreate, args []string) {
 	rolename := strings.Join(args, " ")
 	gu, err := discord.Guild(message.GuildID)
 	errCheck("Couldn't get guild ID", err)
 	roles := gu.Roles
+
+	mem, err := discord.GuildMember(gu.ID, message.Author.ID)
+
+	memRoles := mem.Roles
 
 	if strings.Compare("", rolename) == 0 {
 		var roleStr strings.Builder
@@ -139,6 +142,15 @@ func RankCommand(discord *discordgo.Session, message *discordgo.MessageCreate, a
 	for _, role := range roles {
 		if strings.Compare(role.Name, rolename) == 0 {
 			exists = true
+
+			if Contains(memRoles, role.ID) {
+				err = RemoveRole(discord, gu, role, message.Author)
+				errCheck("Couldn't remove role successfully", err)
+				discord.ChannelMessageSend(message.ChannelID, message.Author.Mention()+", you successfully left **"+role.Name+"**.")
+				fmt.Println("Successfully removed " + role.Name + " role from user " + message.Author.String())
+				break
+			}
+
 			err = AddRole(discord, gu, role, message.Author)
 			if err != nil {
 				discord.ChannelMessageSend(message.ChannelID, "Sorry "+message.Author.Mention()+", I could not assign the role **"+role.Name+"** to you.")
