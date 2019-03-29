@@ -72,7 +72,7 @@ func commandHandler(discord *discordgo.Session, message *discordgo.MessageCreate
 	switch comm {
 	//Simple test command ping. Bot responds with Pong.
 	case "!ping":
-		go PingCommand(discord, message.ChannelID)
+		go PingCommand(discord, message)
 	case "!clear":
 		// Clears up to 100 messages less than 2 weeks old in the called channel.
 		go ClearCommand(discord, message)

@@ -15,11 +15,11 @@ to the user.
 discord: the Discord session struct
 chID: the Discord channel ID to send the message through
 */
-func PingCommand(discord *discordgo.Session, chID string) {
-	msg, err := discord.ChannelMessageSend(chID, "Pong!")
+func PingCommand(discord *discordgo.Session, message *discordgo.MessageCreate) {
+	_, err := discord.ChannelMessageSend(message.ChannelID, "Pong!")
 	errCheck("Did not send ping message back successfully", err)
 
-	fmt.Println("Responded to ping by user " + msg.Author.String())
+	fmt.Println("Responded to ping by user " + message.Author.String())
 }
 
 /*
