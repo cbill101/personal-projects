@@ -49,8 +49,7 @@ func main() {
 }
 
 /*
-commandHandler ...
-Handle various commands passed into the bot.
+commandHandler handles various commands passed into the bot.
 discord: the discord session.
 message: the command.
 */
@@ -84,6 +83,8 @@ func commandHandler(discord *discordgo.Session, message *discordgo.MessageCreate
 		go LeaveCommand(discord, message)
 	case "!rank":
 		go RankCommand(discord, message, args)
+	case "!help":
+		go HelpCommand(discord, message)
 	}
 
 	// Debugging server side, prints stuff

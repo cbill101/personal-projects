@@ -5,8 +5,7 @@ import (
 )
 
 /*
-AddRole ...
-Adds the passed in role to the desired user. Essentially an error wrapper for GuildMemberRoleAdd.
+AddRole adds the passed in role to the desired user. Essentially an error wrapper for GuildMemberRoleAdd.
 
 discord: the Discord Session
 gu: the Discord Guild instance (server)
@@ -24,8 +23,7 @@ func AddRole(discord *discordgo.Session, gu *discordgo.Guild, role *discordgo.Ro
 }
 
 /*
-RemoveRole ...
-Removes the passed in role to the desired user. Essentially an error wrapper for GuildMemberRoleAdd.
+RemoveRole removes the passed in role to the desired user. Essentially an error wrapper for GuildMemberRoleAdd.
 
 discord: the Discord Session
 gu: the Discord Guild instance (server)

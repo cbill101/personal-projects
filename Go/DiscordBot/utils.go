@@ -7,8 +7,7 @@ import (
 )
 
 /*
-errCheck ...
-Checks if an error occured. If so, print the passed in message and abort.
+errCheck checks if an error occured. If so, print the passed in message and abort.
 
 msg: the string to print out to the console.
 err: the error to print out.
@@ -21,8 +20,7 @@ func errCheck(msg string, err error) {
 }
 
 /*
-errCheckNonPanic ...
-Checks if an error occured. If so, print the passed in message to both console
+errCheckNonPanic checks if an error occured. If so, print the passed in message to both console
 and Discord channel.
 
 Only use if you don't want to panic after a non fatal error occurs.
@@ -38,8 +36,7 @@ func errCheckNonPanic(discord *discordgo.Session, message *discordgo.MessageCrea
 }
 
 /*
-Contains ...
-Checks if a string in side the string array.
+Contains checks if a string in side the string array.
 
 Returns true is string x is in array a.
 

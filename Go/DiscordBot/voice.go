@@ -7,8 +7,7 @@ import (
 )
 
 /*
-findUserVoiceState ...
-Finds the voice state associated with the desired user, if it exists.
+findUserVoiceState finds the voice state associated with the desired user, if it exists.
 
 session: the Discord Session
 userid: the Discord user ID
@@ -27,8 +26,7 @@ func findUserVoiceState(session *discordgo.Session, userid string) (*discordgo.V
 }
 
 /*
-leaveVoiceChannel ...
-The bot leaves the voice channel it is currently in.
+leaveVoiceChannel makes the bot leave the voice channel it is currently in.
 Contract: This function assumes the vc struct is not null.
 
 vc: the voice connection associated with the bot

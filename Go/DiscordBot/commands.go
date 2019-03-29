@@ -8,12 +8,11 @@ import (
 )
 
 /*
-PingCommand ...
-Handles the ping command from a Discord user... which simply returns Pong! back
+PingCommand handles the ping command from a Discord user... which simply returns Pong! back
 to the user.
 
 discord: the Discord session struct
-chID: the Discord channel ID to send the message through
+message: the Message containing a lot of info (channel ID, author, content, etc)
 */
 func PingCommand(discord *discordgo.Session, message *discordgo.MessageCreate) {
 	_, err := discord.ChannelMessageSend(message.ChannelID, "Pong!")
@@ -23,8 +22,8 @@ func PingCommand(discord *discordgo.Session, message *discordgo.MessageCreate) {
 }
 
 /*
-ClearCommand ...
-Handles the clear command from a Discord user.
+ClearCommand handles the clear command from a Discord user.
+
 This clears up to 100 messages in the channel it is called in.
 !!REQUIRES MANAGE MESSAGES PERMISSION TO WORK!!
 
@@ -47,8 +46,7 @@ func ClearCommand(discord *discordgo.Session, message *discordgo.MessageCreate) 
 }
 
 /*
-ListenCommand ...
-Handles the listen command from a Discord user.
+ListenCommand handles the listen command from a Discord user.
 
 This allows users to listen to songs through YouTube. (TODO)
 
@@ -70,8 +68,7 @@ func ListenCommand(discord *discordgo.Session, message *discordgo.MessageCreate,
 }
 
 /*
-JoinCommand ...
-Handles the join command from a Discord user.
+JoinCommand handles the join command from a Discord user.
 
 This allows the bot to join the voice channel the calling user is currently in.
 If the user is not in a voice channel... the bot will stay put.
@@ -103,8 +100,7 @@ func JoinCommand(discord *discordgo.Session, message *discordgo.MessageCreate) {
 }
 
 /*
-LeaveCommand ...
-Handles the leave command from a Discord user.
+LeaveCommand handles the leave command from a Discord user.
 
 This allows the bot to leave the voice channel the bot is currently in.
 If the user is not in a voice channel... the bot will stay put.
@@ -129,8 +125,7 @@ func LeaveCommand(discord *discordgo.Session, message *discordgo.MessageCreate) 
 }
 
 /*
-RankCommand ...
-Handles the rank command from a Discord user.
+RankCommand handles the rank command from a Discord user.
 
 This allows the user to assign a role to themselves. Cool, right?
 If no args, simply lists all the roles.
@@ -197,4 +192,26 @@ func RankCommand(discord *discordgo.Session, message *discordgo.MessageCreate, a
 	if !exists {
 		discord.ChannelMessageSend(message.ChannelID, "The role **"+rolename+"** does not exist on this server.")
 	}
+}
+
+/*
+HelpCommand handles the help command from a Discord user.
+
+This prints out the available commands for the bot.
+
+discord: The Discord session struct
+message: the Message containing a lot of info (channel ID, author, content, etc)
+*/
+func HelpCommand(discord *discordgo.Session, message *discordgo.MessageCreate) {
+	var str strings.Builder
+	str.WriteString("```Available commands: \n")
+
+	str.WriteString("!ping: Pong!\n")
+	str.WriteString("!clear: Clears up to 100 messages in the called channel less than 2 weeks old.\n")
+	str.WriteString("!listen <url>: WIP, eventually listen to music.\n")
+	str.WriteString("!join: Bot joins your current voice channel. Does nothing if not in one.\n")
+	str.WriteString("!leave: Bot leaves its voice channel. Does nothing if bot is not in voice channel.\n")
+	str.WriteString("!rank <rank>: Set <rank> to yourself. If already set, leaves that rank. !rank lists all ranks.\n```")
+
+	discord.ChannelMessageSend(message.ChannelID, str.String())
 }
