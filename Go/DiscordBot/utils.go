@@ -14,7 +14,7 @@ err: the error to print out.
 */
 func errCheck(msg string, err error) {
 	if err != nil {
-		fmt.Printf("%s: %+v", msg, err)
+		fmt.Printf("%s: %+v\n", msg, err)
 		panic(err)
 	}
 }
@@ -30,8 +30,8 @@ err: the error to print out.
 */
 func errCheckNonPanic(discord *discordgo.Session, message *discordgo.MessageCreate, msg string, err error) {
 	if err != nil {
-		_, err := discord.ChannelMessageSend(message.ChannelID, msg)
-		fmt.Printf("%s: %+v", msg, err)
+		fmt.Printf("%s: %+v\n", msg, err)
+		discord.ChannelMessageSend(message.ChannelID, msg)
 	}
 }
 

@@ -85,6 +85,10 @@ func commandHandler(discord *discordgo.Session, message *discordgo.MessageCreate
 		go RankCommand(discord, message, args)
 	case "!help":
 		go HelpCommand(discord, message)
+	case "!nick":
+		go NickCommand(discord, message, args)
+	case "!setnick":
+		go SetnickCommand(discord, message, args)
 	}
 
 	// Debugging server side, prints stuff

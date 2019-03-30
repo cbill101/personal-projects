@@ -215,3 +215,54 @@ func HelpCommand(discord *discordgo.Session, message *discordgo.MessageCreate) {
 
 	discord.ChannelMessageSend(message.ChannelID, str.String())
 }
+
+/*
+NickCommand handles the nick command from a Discord user.
+
+This changes the bot's nickname.
+
+discord: The Discord session struct
+message: the Message containing a lot of info (channel ID, author, content, etc)
+args: the command args
+*/
+func NickCommand(discord *discordgo.Session, message *discordgo.MessageCreate, args []string) {
+	if len(args) < 1 {
+		discord.ChannelMessageSend(message.ChannelID, "```Usage: !nick <nickname>\nThis changes the bot's nickname.```")
+		return
+	}
+
+	nick := strings.Join(args, " ")
+
+	err := discord.GuildMemberNickname(message.GuildID, "@me", nick)
+	errCheckNonPanic(discord, message, "Did not assign myself the nick successfully.", err)
+}
+
+/*
+SetnickCommand handles the setnick command from a Discord user.
+
+This changes the passed in user's nickname to the passed in nickname.
+
+discord: The Discord session struct
+message: the Message containing a lot of info (channel ID, author, content, etc)
+args: the command args
+*/
+func SetnickCommand(discord *discordgo.Session, message *discordgo.MessageCreate, args []string) {
+	if len(args) < 2 {
+		discord.ChannelMessageSend(message.ChannelID, "```Usage: !setnick <user> <nickname>\nThis changes the desired user's nickname.```")
+		return
+	}
+
+	user := args[0]
+	nick := strings.Join(args[1:], " ")
+	gu, err := discord.State.Guild(message.GuildID)
+
+	if err == nil {
+		for _, m := range gu.Members {
+			if m.User.Username == user {
+				err = discord.GuildMemberNickname(m.GuildID, m.User.ID, nick)
+				errCheckNonPanic(discord, message, "Did not assign the desired user the nick successfully.", err)
+				return
+			}
+		}
+	}
+}
