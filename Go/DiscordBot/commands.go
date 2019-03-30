@@ -213,7 +213,7 @@ func HelpCommand(discord *discordgo.Session, message *discordgo.MessageCreate) {
 	str.WriteString("!leave: Bot leaves its voice channel. Does nothing if bot is not in voice channel.\n")
 	str.WriteString("!rank <rank>: Set <rank> to yourself. If already set, leaves that rank. !rank lists all ranks.\n")
 	str.WriteString("!nick <nickname>: Set bot's nickname to <nickname>.\n")
-	str.WriteString("!setnick <user> <rank>: Set <user> nickname to <nickname>.\n```")
+	str.WriteString("!setnick <user> <nickname>: Set <user> nickname to <nickname>.\n```")
 
 	discord.ChannelMessageSend(message.ChannelID, str.String())
 }
