@@ -90,6 +90,10 @@ func commandHandler(discord *discordgo.Session, message *discordgo.MessageCreate
 	case "!help":
 		// Lists commands and what not
 		go HelpCommand(discord, message)
+	case "!nick":
+		go NickCommand(discord, message, args)
+	case "!setnick":
+		go SetnickCommand(discord, message, args)
 	}
 
 	// Debugging server side, prints stuff

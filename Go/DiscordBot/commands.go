@@ -211,7 +211,60 @@ func HelpCommand(discord *discordgo.Session, message *discordgo.MessageCreate) {
 	str.WriteString("!listen <url>: WIP, eventually listen to music.\n")
 	str.WriteString("!join: Bot joins your current voice channel. Does nothing if not in one.\n")
 	str.WriteString("!leave: Bot leaves its voice channel. Does nothing if bot is not in voice channel.\n")
-	str.WriteString("!rank <rank>: Set <rank> to yourself. If already set, leaves that rank. !rank lists all ranks.\n```")
+	str.WriteString("!rank <rank>: Set <rank> to yourself. If already set, leaves that rank. !rank lists all ranks.\n")
+	str.WriteString("!nick <nickname>: Set bot's nickname to <nickname>.\n")
+	str.WriteString("!setnick <user> <nickname>: Set <user> nickname to <nickname>.\n```")
 
 	discord.ChannelMessageSend(message.ChannelID, str.String())
+}
+
+/*
+NickCommand handles the nick command from a Discord user.
+
+This changes the bot's nickname.
+
+discord: The Discord session struct
+message: the Message containing a lot of info (channel ID, author, content, etc)
+args: the command args
+*/
+func NickCommand(discord *discordgo.Session, message *discordgo.MessageCreate, args []string) {
+	if len(args) < 1 {
+		discord.ChannelMessageSend(message.ChannelID, "```Usage: !nick <nickname>\nThis changes the bot's nickname.```")
+		return
+	}
+
+	nick := strings.Join(args, " ")
+
+	err := discord.GuildMemberNickname(message.GuildID, "@me", nick)
+	errCheckNonPanic(discord, message, "Did not assign myself the nick successfully.", err)
+}
+
+/*
+SetnickCommand handles the setnick command from a Discord user.
+
+This changes the passed in user's nickname to the passed in nickname.
+
+discord: The Discord session struct
+message: the Message containing a lot of info (channel ID, author, content, etc)
+args: the command args
+*/
+func SetnickCommand(discord *discordgo.Session, message *discordgo.MessageCreate, args []string) {
+	if len(args) < 2 {
+		discord.ChannelMessageSend(message.ChannelID, "```Usage: !setnick <user> <nickname>\nThis changes the desired user's nickname.```")
+		return
+	}
+
+	user := args[0]
+	nick := strings.Join(args[1:], " ")
+	gu, err := discord.State.Guild(message.GuildID)
+
+	if err == nil {
+		for _, m := range gu.Members {
+			if m.User.Username == user {
+				err = discord.GuildMemberNickname(m.GuildID, m.User.ID, nick)
+				errCheckNonPanic(discord, message, "Did not assign the desired user the nick successfully.", err)
+				return
+			}
+		}
+	}
 }
