@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{11A41A4C-EC3C-4001-BCDC-6BD26D3A878A}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Resources</RootNamespace>
+    <AssemblyName>Resources</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Graphics\Oxygen-Icons.org-Oxygen-Apps-preferences-system-performance.ico" />
+    <Content Include="Graphics\ship0.png" />
+    <Content Include="Graphics\ship1.png" />
+    <Content Include="Graphics\ship2.png" />
+    <Content Include="Graphics\ship3.png" />
+    <Content Include="Graphics\ship4.png" />
+    <Content Include="Graphics\ship5.png" />
+    <Content Include="Graphics\ship6.png" />
+    <Content Include="Graphics\ship7.png" />
+    <Content Include="Graphics\shot0.png" />
+    <Content Include="Graphics\shot1.png" />
+    <Content Include="Graphics\shot2.png" />
+    <Content Include="Graphics\shot3.png" />
+    <Content Include="Graphics\shot4.png" />
+    <Content Include="Graphics\shot5.png" />
+    <Content Include="Graphics\shot6.png" />
+    <Content Include="Graphics\shot7.png" />
+    <Content Include="Graphics\star.png" />
+    <Content Include="Graphics\thrust0.png" />
+    <Content Include="Graphics\thrust1.png" />
+    <Content Include="Graphics\thrust2.png" />
+    <Content Include="Graphics\thrust3.png" />
+    <Content Include="Graphics\thrust4.png" />
+    <Content Include="Graphics\thrust5.png" />
+    <Content Include="Graphics\thrust6.png" />
+    <Content Include="Graphics\thrust7.png" />
+    <Content Include="README.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Libraries\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

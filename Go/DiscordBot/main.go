@@ -76,14 +76,19 @@ func commandHandler(discord *discordgo.Session, message *discordgo.MessageCreate
 		// Clears up to 100 messages less than 2 weeks old in the called channel.
 		go ClearCommand(discord, message)
 	case "!listen":
+		// Queries Youtube to get music to listen.
 		go ListenCommand(discord, message, args)
 	case "!join":
+		// Joins voice channel you're currently in.
 		go JoinCommand(discord, message)
 	case "!leave":
+		// Leaves voice channel, if in one.
 		go LeaveCommand(discord, message)
 	case "!rank":
+		// Set's your rank.
 		go RankCommand(discord, message, args)
 	case "!help":
+		// Lists commands and what not
 		go HelpCommand(discord, message)
 	}
 

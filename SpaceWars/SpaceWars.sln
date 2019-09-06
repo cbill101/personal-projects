@@ -1,0 +1,114 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.10
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{3AA028FE-99F8-4AC0-910F-584CD0D588D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Resources", "Resources\Resources.csproj", "{11A41A4C-EC3C-4001-BCDC-6BD26D3A878A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "View", "View\View.csproj", "{8D6D903A-48EB-46E9-88DB-6D8DBAB113CE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Controller", "Controller\Controller.csproj", "{0AAC8222-E2ED-4C01-B45A-BB5C84014225}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vector2D", "Vector2D\Vector2D.csproj", "{9D8A5C9C-9023-4D43-A668-F16E36C5C844}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "Server\Server.csproj", "{C49ADE60-D219-4517-84EE-B22F637F4D3D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelTester", "ModelTester\ModelTester.csproj", "{682F77BA-533F-437A-8CF7-92FD4B02E447}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3AA028FE-99F8-4AC0-910F-584CD0D588D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3AA028FE-99F8-4AC0-910F-584CD0D588D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3AA028FE-99F8-4AC0-910F-584CD0D588D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3AA028FE-99F8-4AC0-910F-584CD0D588D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11A41A4C-EC3C-4001-BCDC-6BD26D3A878A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11A41A4C-EC3C-4001-BCDC-6BD26D3A878A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11A41A4C-EC3C-4001-BCDC-6BD26D3A878A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D6D903A-48EB-46E9-88DB-6D8DBAB113CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D6D903A-48EB-46E9-88DB-6D8DBAB113CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D6D903A-48EB-46E9-88DB-6D8DBAB113CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D6D903A-48EB-46E9-88DB-6D8DBAB113CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0AAC8222-E2ED-4C01-B45A-BB5C84014225}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AAC8222-E2ED-4C01-B45A-BB5C84014225}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AAC8222-E2ED-4C01-B45A-BB5C84014225}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AAC8222-E2ED-4C01-B45A-BB5C84014225}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D8A5C9C-9023-4D43-A668-F16E36C5C844}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D8A5C9C-9023-4D43-A668-F16E36C5C844}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D8A5C9C-9023-4D43-A668-F16E36C5C844}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D8A5C9C-9023-4D43-A668-F16E36C5C844}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C49ADE60-D219-4517-84EE-B22F637F4D3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C49ADE60-D219-4517-84EE-B22F637F4D3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C49ADE60-D219-4517-84EE-B22F637F4D3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C49ADE60-D219-4517-84EE-B22F637F4D3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{682F77BA-533F-437A-8CF7-92FD4B02E447}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{682F77BA-533F-437A-8CF7-92FD4B02E447}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{682F77BA-533F-437A-8CF7-92FD4B02E447}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{682F77BA-533F-437A-8CF7-92FD4B02E447}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {57A0E142-787A-4D72-AD31-A86BFC646A57}
+	EndGlobalSection
+	GlobalSection(Performance) = preSolution
+		HasPerformanceSessions = true
+	EndGlobalSection
+	GlobalSection(Performance) = preSolution
+		HasPerformanceSessions = true
+	EndGlobalSection
+	GlobalSection(Performance) = preSolution
+		HasPerformanceSessions = true
+	EndGlobalSection
+	GlobalSection(Performance) = preSolution
+		HasPerformanceSessions = true
+	EndGlobalSection
+	GlobalSection(Performance) = preSolution
+		HasPerformanceSessions = true
+	EndGlobalSection
+	GlobalSection(Performance) = preSolution
+		HasPerformanceSessions = true
+	EndGlobalSection
+	GlobalSection(Performance) = preSolution
+		HasPerformanceSessions = true
+	EndGlobalSection
+	GlobalSection(Performance) = preSolution
+		HasPerformanceSessions = true
+	EndGlobalSection
+	GlobalSection(Performance) = preSolution
+		HasPerformanceSessions = true
+	EndGlobalSection
+	GlobalSection(Performance) = preSolution
+		HasPerformanceSessions = true
+	EndGlobalSection
+	GlobalSection(Performance) = preSolution
+		HasPerformanceSessions = true
+	EndGlobalSection
+	GlobalSection(Performance) = preSolution
+		HasPerformanceSessions = true
+	EndGlobalSection
+	GlobalSection(Performance) = preSolution
+		HasPerformanceSessions = true
+	EndGlobalSection
+	GlobalSection(Performance) = preSolution
+		HasPerformanceSessions = true
+	EndGlobalSection
+	GlobalSection(Performance) = preSolution
+		HasPerformanceSessions = true
+	EndGlobalSection
+	GlobalSection(Performance) = preSolution
+		HasPerformanceSessions = true
+	EndGlobalSection
+	GlobalSection(Performance) = preSolution
+		HasPerformanceSessions = true
+	EndGlobalSection
+	GlobalSection(Performance) = preSolution
+		HasPerformanceSessions = true
+	EndGlobalSection
+EndGlobal
