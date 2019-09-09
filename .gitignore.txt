@@ -1,1 +1,1 @@
-/config
+/Go/DiscordBot/config
