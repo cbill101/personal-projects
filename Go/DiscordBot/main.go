@@ -30,6 +30,7 @@ func main() {
 		Creating discord session. Associating myself with the bot.
 	*/
 	discord, err := discordgo.New("Bot " + getToken())
+
 	errCheck("error creating discord session", err)
 	user, err := discord.User("@me")
 	errCheck("error retrieving account", err)
