@@ -1,7 +1,11 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
+	"io/ioutil"
+	"os"
+	"path/filepath"
 	"strings"
 
 	"github.com/bwmarrin/discordgo"
@@ -10,14 +14,22 @@ import (
 var (
 	commandPrefix string
 	botID         string
+	token         string
 	voiceConn     *discordgo.VoiceConnection
 )
+
+/*
+Config struct for config json for bot.
+*/
+type Config struct {
+	Token string `json:"Token"`
+}
 
 func main() {
 	/*
 		Creating discord session. Associating myself with the bot.
 	*/
-	discord, err := discordgo.New("Bot NTYwODUzMDQxMDU4Njc2Nzcy.D36FEw.y0K7W_ZII_qasEp5Jhrgbr-uDjM")
+	discord, err := discordgo.New("Bot " + getToken())
 	errCheck("error creating discord session", err)
 	user, err := discord.User("@me")
 	errCheck("error retrieving account", err)
@@ -98,4 +110,22 @@ func commandHandler(discord *discordgo.Session, message *discordgo.MessageCreate
 
 	// Debugging server side, prints stuff
 	fmt.Printf("Message: %+v || From: %s\n", message.Message, message.Author)
+}
+
+func getToken() string {
+	pwd, _ := os.Getwd()
+	path := filepath.Join(pwd, "config", "conf.json")
+	file, _ := os.Open(path)
+
+	defer file.Close()
+	byteValue, _ := ioutil.ReadAll(file)
+
+	var conf Config
+
+	err := json.Unmarshal(byteValue, &conf)
+	if err != nil {
+		fmt.Println("error:", err)
+	}
+
+	return conf.Token
 }
