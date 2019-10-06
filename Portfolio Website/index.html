@@ -1,60 +1,83 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<title>Chris Billingsley</title>
-		<link href="stylesheets/style.css" media="screen" rel="stylesheet" type="text/css" />
-		<meta charset="UTF-8">
-		<meta name="description" content="Chris Billingsley's portfolio site. Welcome!">
-		<meta name="keywords" content = "Chris, Billingsley, portfolio, university, of, utah">
-		<meta name="author" content="Chris Billingsley">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	</head>
-	
-	<body>
-		<ul id="menu">
-			<li><a href="#aboutme">About Me</a></li>
-			<li><a href="#projects">Projects</a></li>
-			<li><a href="#contact">Contact</a></li>
-		</ul>
-		<div id = "aboutme">
-			<h1 style = "text-align:center;">About Me</h1>
-		</div>
-		<div id = "myImage" class = "flex-container">
-			<img id = "chris" src="cb_headshot.png" width = "300" height = "300"/>
-		</div>
-		<div id = "story-container" class = "container">
-			<div id = "story">
-				<p>Thanks for dropping by... My name is Chris Billingsley. I'm a Sophomore at the University of Utah.
-				I'm currently a CS major. This is surprising to me, as I have considered a completely different path several years ago.
-				My desire to go into CS emerged very recently, when I was a middle school student. That was the time when
-				I took my very first programming class. After that, despite my frustrations, I knew the CS field was where I wanted to be.</p>
-				<p>Before high school, I wanted to go into the medical field. I was one of the cookie cutter kids who
-				wanted to be a doctor. I also thought about being a pharmacist. At some point, I even thought about
-				becoming a police officer!</p>
-				<p style = "font-style:italic; text-align:center; text-indent:0px; ";>That all changed.</p>
-				<p>It all refers back to my love for gaming. I played on several consoles in the past, such as the PS1,
-				Nintendo 64, Xbox 360, and PS4. However, I started to discover PC gaming. In the process, I did a LOT
-				of research. This research consisted of learning new hardware knowledge, figuring out compatibilities,
-				and other things. I eventually became obsessed with researching this to the point where I learned about
-				why all of these components exist: their purposes, fucntions, roles in the team of hardware working to
-				make today's modern marvel: the computer.</p>
-				<p>After all of this research, I naturally thought about how games were made. I wanted to know how they
-				were created. I wanted to know how it all came together. Thus, my programming journey began. In 9th grade,
-				I decided to learn a programming language: Python. It was a very simple language to learn, and I enjoyed it.
-				I have not coded in Python for a long time, but it should be easy to pick up again. In high school, I learned
-				bits and pieces of C# and Java, in formal programming courses. In contrast to Python, I did not like how 
-				I learned those languages initially. I felt like I was held back and not properly taught. As a result,
-				I learned the majority of programming concepts on my own, and learned what and what not to do along the way.
-				My projects will demonstrate my frustration from past courses. I made many mistakes that I didn't know WERE
-				mistakes. However, that is all a part of learning.</p>
-				
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Chris Billingsley</title>
+	<link rel="stylesheet" href="stylesheets/style.css">
+</head>
+<body>
+	<header>
+		<a href="#" class="logo">Chris Billingsley</a>
+		<nav>
+			<ul>
+				<li><a href="#">Home</a></li>
+				<li><a href="#">CS Projects</a></li>
+				<li><a href="#">Contact Me</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<div class="parent">
+		<section class="init-pic">
+			<div class="inner">
+				<div class="title">
+					<h1>Welcome!</h1>
+				</div>
+				<div class="desc">
+					<p>Thank you for visiting my portfolio page, my CS projects will be here.</p>
+				</div>
 			</div>
-		</div>
-		<div id="footer">
-			<p>
-				Webpage made by Chris Billingsley
-			</p>
-		</div>
-	</body>
-	
+		</section>
+		<section class="about">
+			<div class="inner">
+				<div class="title">
+					<h2>About Me</h2>
+				</div>
+				<div class="desc">
+					<p>I'm a senior at the University of Utah studying CS. I enjoy it a ton!</p>
+				</div>
+			</div>
+		</section>
+		<section class="projects">
+			<div class="inner">
+				<div class="title">
+					<h2>My Personal Projects</h2>
+				</div>
+				<div class="desc">
+					<nav>
+						<ul>
+							<li><a href="#" class="act-but">Discord Bot (Golang)</a></li>
+							<li><a href="#" class="act-but">Multi Client Spreadsheet (C#/C++)</a></li>
+							<li><a href="#" class="act-but">Space Wars (C#)</a></li>
+							<li><a href="#" class="act-but">Malware Filtering Proxy (Python)</a></li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</section>
+	</div>
+
+	<footer>
+		<section class="contact">
+			<div class="inner">
+				<div class="title">
+					<h2>Social Media and Links</h2>
+				</div>
+				<div class="links">
+					<nav>
+						<ul>
+							<li><a href="#" class="act-but">Twitter</a></li>
+							<li><a href="#" class="act-but">Facebook</a></li>
+							<li><a href="#" class="act-but">Linkedin</a></li>
+							<li><a href="#" class="act-but">Github</a></li>
+							<li><a href="#" class="act-but">Instagram</a></li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</section>
+	</footer>
+</body>
 </html>
